@@ -14,6 +14,7 @@ void zwiekszanie(int id) {
         ++counter;
         cout << "Watek " << id << " zwiekszyl licznik: " << counter << std::endl;
         mtx.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }
 
@@ -23,6 +24,7 @@ void zmniejszanie(int id) {
         --counter;
         cout << "Watek " << id << " zmniejszyl licznik: " << counter << std::endl;
         mtx.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }
 
