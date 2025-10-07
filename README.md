@@ -1,0 +1,2 @@
+# ProgramowanieGPU
+Przedmiot akademicki
