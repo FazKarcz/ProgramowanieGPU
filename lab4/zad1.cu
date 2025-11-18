@@ -1,12 +1,12 @@
 #include <cuda_runtime.h>
 #include <iostream>
 
-#define BLOCK_SIZE 256
+#define BLOCK_SIZE 512
 
-// Zadanie 1
+
 
 __global__ void vectorScalarMulShared(float* d_out, const float* d_in, float scalar, int n) {
-    __shared__ float s_data[BLOCK_SIZE];
+    __shared__ float s_data[BLOCK_SIZE]; // deklaracnja
 
     int globalIdx = blockIdx.x * blockDim.x + threadIdx.x;
     int localIdx = threadIdx.x;
@@ -15,7 +15,7 @@ __global__ void vectorScalarMulShared(float* d_out, const float* d_in, float sca
         s_data[localIdx] = d_in[globalIdx];
     }
 
-    __syncthreads();
+    __syncthreads(); // synchronizacja
 
     if (globalIdx < n) {
         d_out[globalIdx] = s_data[localIdx] * scalar;
@@ -46,8 +46,8 @@ int main() {
 
     cudaMemcpy(h_out, d_out, bytes, cudaMemcpyDeviceToHost);
 
-    std::cout << "Wyniki (pierwsze 10 elementow):" << std::endl;
-    for (int i = 0; i < 10; i++) {
+    std::cout << "Wyniki:" << std::endl;
+    for (int i = 0; i <= 512; i++) {
         std::cout << "Indeks " << i << ": " << h_in[i] << " * " << scalar
             << " = " << h_out[i] << std::endl;
     }
@@ -57,6 +57,6 @@ int main() {
     free(h_in);
     free(h_out);
 
+
     return 0;
 }
-
