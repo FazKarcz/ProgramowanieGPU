@@ -1,25 +1,22 @@
 #include <stdio.h>
 
 __global__ void vectorAddShared(const float* A, const float* B, float* C, int n) {
-    // Pamięć współdzielona
     extern __shared__ float shared[];
 
-    float* sA = shared;                       // pierwsza część dla A
-    float* sB = shared + blockDim.x;          // druga część dla B
+    float* sA = shared;                      
+    float* sB = shared + blockDim.x;          
 
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (idx < n) {
-        // Wczytanie porcji danych do shared memory
         sA[threadIdx.x] = A[idx];
         sB[threadIdx.x] = B[idx];
 
-        __syncthreads();  // czekamy aż wszystkie wątki skończą kopiowanie
+        __syncthreads();  
 
-        // Operacja na danych w shared memory
+
         float result = sA[threadIdx.x] + sB[threadIdx.x];
 
-        // Zapis do pamięci globalnej
         C[idx] = result;
     }
 }
@@ -28,19 +25,19 @@ int main() {
     const int n = 1024;
     size_t size = n * sizeof(float);
 
-    // Alokacja pamięci hosta
+
     float *hA, *hB, *hC;
     hA = (float*)malloc(size);
     hB = (float*)malloc(size);
     hC = (float*)malloc(size);
 
-    // Inicjalizacja
+
     for (int i = 0; i < n; i++) {
         hA[i] = i;
         hB[i] = 2 * i;
     }
 
-    // Alokacja pamięci na GPU
+
     float *dA, *dB, *dC;
     cudaMalloc(&dA, size);
     cudaMalloc(&dB, size);
@@ -52,12 +49,10 @@ int main() {
     int blockSize = 256;
     int gridSize  = (n + blockSize - 1) / blockSize;
 
-    // shared memory = 2 * blockSize * sizeof(float)
     vectorAddShared<<<gridSize, blockSize, 2 * blockSize * sizeof(float)>>>(dA, dB, dC, n);
 
     cudaMemcpy(hC, dC, size, cudaMemcpyDeviceToHost);
 
-    // Test
     for (int i = 0; i < 10; i++) {
         printf("%f + %f = %f\n", hA[i], hB[i], hC[i]);
     }
