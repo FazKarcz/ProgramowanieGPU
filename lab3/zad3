@@ -1,0 +1,19 @@
+32 wątki/blok
+achieved occupancy = 9.25
+GPU nie ma wystarczającego poziomu równoległości
+SM wykonuje mało równoległych warpów → bardzo słaba efektywność
+
+64 wątki/blok 
+occupancy = 18.95
+
+128 wątków/blok 
+occupancy = 28.27
+
+256 wątków/blok 
+occupancy = 39.63
+
+512 wątków/blok
+occupancy = 51.74
+
+1024 wątki/blok
+occupancy = 63,39
