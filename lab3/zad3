@@ -15,5 +15,5 @@ occupancy = 39.63
 512 wątków/blok
 occupancy = 51.74
 
-1024 wątki/blok
+1024 wątki/blok (Tak jak jest obecnie w Zad1)
 occupancy = 63,39
