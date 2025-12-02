@@ -1,1 +1,3 @@
-Kod z zadania 1, czyli 1024 wątki osiąga Duration(us) - 3,71
+Kod z zadania 1, czyli 1024 wątki/blok osiąga Duration(us) - 3,71
+
+W skrócie działa mega szybko
