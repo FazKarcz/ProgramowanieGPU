@@ -7,3 +7,6 @@ Karta RTX 4060 laptop
 64 k rejestry na SM,
 maksymalnie 1024 wątki na blok,
 typowy peak memory bandwidth ~192–200 GB/s
+
+
+Do wykonania profilowania został użyty program NVIDIA Nsight Compute w wersji 2025.3.1
