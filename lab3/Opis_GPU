@@ -1,0 +1,9 @@
+Krótki opis na jakiej karcie graficznej został wyprofilowany kod:
+
+Karta RTX 4060 laptop
+
+3072 CUDA cores,
+128 KB shared memory na SM,
+64 k rejestry na SM,
+maksymalnie 1024 wątki na blok,
+typowy peak memory bandwidth ~192–200 GB/s
