@@ -6,14 +6,14 @@
 
 using namespace nvcuda::wmma;
 
-#define CHECK(call)                                                 \
-{                                                                   \
-    cudaError_t err = call;                                         \
-    if (err != cudaSuccess) {                                       \
-        fprintf(stderr, "CUDA error at %s:%d: %s\n",                \
-            __FILE__, __LINE__, cudaGetErrorString(err));           \
-        exit(EXIT_FAILURE);                                         \
-    }                                                               \
+#define CHECK(call)                                                 
+{                                                                   
+    cudaError_t err = call;                                         
+    if (err != cudaSuccess) {                                       
+        fprintf(stderr, "CUDA error at %s:%d: %s\n",                
+            __FILE__, __LINE__, cudaGetErrorString(err));           
+        exit(EXIT_FAILURE);                                         
+    }                                                               
 }
 
 // Kernel 1: Naiwny - global memory
