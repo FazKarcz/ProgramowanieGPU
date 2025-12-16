@@ -82,7 +82,7 @@ int main() {
     cudaFree(A);
     cudaFree(mean);
     cudaFree(std);
-    cudaFree(h_A);
+    cudaFree(h_A); //
 
     return 0;
 }
